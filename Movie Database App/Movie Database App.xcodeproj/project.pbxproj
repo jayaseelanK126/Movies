@@ -98,15 +98,56 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5863ED7227796FCD00F3ECB2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				58E549AB2775F48B009CB079 /* MoviesModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5863ED7327796FDC00F3ECB2 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				58E549AD277604EC009CB079 /* ViewModel.swift */,
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
+		5863ED7427796FF200F3ECB2 /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				58E5497C2775ED0A009CB079 /* Main.storyboard */,
+				58E5497A2775ED0A009CB079 /* ViewController.swift */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		5863ED752779700300F3ECB2 /* SearchResult */ = {
+			isa = PBXGroup;
+			children = (
+				58E549B82776187A009CB079 /* MoviesResultTableViewController.swift */,
+				58E549B92776187B009CB079 /* MoviesResultTableViewController.xib */,
+			);
+			path = SearchResult;
+			sourceTree = "<group>";
+		};
+		5863ED762779701C00F3ECB2 /* Movie Details */ = {
+			isa = PBXGroup;
+			children = (
+				5864C50A2778C77400A21582 /* MoviewDetailViewController.swift */,
+				5864C50B2778C77400A21582 /* MoviewDetailViewController.xib */,
+			);
+			path = "Movie Details";
+			sourceTree = "<group>";
+		};
 		5864C5092778C72C00A21582 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				58E5497A2775ED0A009CB079 /* ViewController.swift */,
-				58E549B82776187A009CB079 /* MoviesResultTableViewController.swift */,
-				58E549B92776187B009CB079 /* MoviesResultTableViewController.xib */,
-				58E5497C2775ED0A009CB079 /* Main.storyboard */,
-				5864C50A2778C77400A21582 /* MoviewDetailViewController.swift */,
-				5864C50B2778C77400A21582 /* MoviewDetailViewController.xib */,
+				5863ED762779701C00F3ECB2 /* Movie Details */,
+				5863ED752779700300F3ECB2 /* SearchResult */,
+				5863ED7427796FF200F3ECB2 /* Dashboard */,
+				58E549AF2776056E009CB079 /* TableViewCell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -134,11 +175,10 @@
 		58E549752775ED0A009CB079 /* Movie Database App */ = {
 			isa = PBXGroup;
 			children = (
-				58E549AF2776056E009CB079 /* TableViewCell */,
 				58E549762775ED0A009CB079 /* AppDelegate.swift */,
 				58E549782775ED0A009CB079 /* SceneDelegate.swift */,
-				58E549AB2775F48B009CB079 /* MoviesModel.swift */,
-				58E549AD277604EC009CB079 /* ViewModel.swift */,
+				5863ED7327796FDC00F3ECB2 /* View Model */,
+				5863ED7227796FCD00F3ECB2 /* Model */,
 				5864C5092778C72C00A21582 /* View */,
 				58E549822775ED0E009CB079 /* Assets.xcassets */,
 				58E549842775ED0E009CB079 /* LaunchScreen.storyboard */,

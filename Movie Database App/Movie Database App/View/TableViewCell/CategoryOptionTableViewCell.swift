@@ -16,9 +16,9 @@ class CategoryOptionTableViewCell: UITableViewCell {
     @IBOutlet weak var durationLbl: UILabel!
     @IBOutlet weak var genreLbl: UILabel!
     @IBOutlet weak var posterImgView: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         CSS.customCardView(outerView)
     }
 

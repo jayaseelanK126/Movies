@@ -10,15 +10,14 @@ import UIKit
 class MoviewDetailViewController: UIViewController {
     
     @IBOutlet weak var posterImgView: UIImageView!
-    
-    @IBOutlet weak var titleLbl: UILabel!
-    
+        @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var castAndCrewLbl: UILabel!
     @IBOutlet weak var releaseDateLbl: UILabel!
     @IBOutlet weak var genreLbl: UILabel!
     @IBOutlet weak var plotLbl: UILabel!
     @IBOutlet weak var userRatingBtn: UIButton!
     
+    //MARK: Properties
     var movieDetails:MoviesModel?
     var toolBar = UIToolbar()
     var picker  = UIPickerView()
@@ -30,6 +29,7 @@ class MoviewDetailViewController: UIViewController {
         
     }
     
+    //MARK: - Load/Map data
     func loadData()
     {
         DispatchQueue.main.async {
@@ -46,6 +46,7 @@ class MoviewDetailViewController: UIViewController {
         }
         
     }
+    //MARK: - Ratings Button Action
     @IBAction func userRatingBtnAction(_ sender: Any)
     {
         picker = UIPickerView.init()
@@ -70,6 +71,7 @@ class MoviewDetailViewController: UIViewController {
     }
 }
 
+//MARK: - PickerView Delegate
 extension MoviewDetailViewController:UIPickerViewDelegate, UIPickerViewDataSource
 {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

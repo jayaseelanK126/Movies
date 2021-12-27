@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  Movie Database App
 //
-//  Created by Pyramid on 24/12/21.
+//  Created by Pyramid on 26/12/21.
 //
 
 import UIKit
@@ -36,18 +36,16 @@ class ViewController: UIViewController, UISearchControllerDelegate {
  
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         setUp()
     }
 
     func setUp()
     {
         resultsTableController = MoviesResultTableViewController()
-//        resultsTableController.suggestedSearchDelegate = self
         searchController = UISearchController(searchResultsController: resultsTableController)
         searchController.searchResultsUpdater = self
         searchController.searchBar.autocapitalizationType = .none
-        searchController.searchBar.searchTextField.placeholder = NSLocalizedString("Enter a search term", comment: "")
+        searchController.searchBar.searchTextField.placeholder = NSLocalizedString("Search moviews by title/genre/director", comment: "")
         searchController.searchBar.returnKeyType = .done
 
         // Place the search bar in the navigation bar.
@@ -61,9 +59,14 @@ class ViewController: UIViewController, UISearchControllerDelegate {
         // Monitor when the search button is tapped, and start/end editing.
         searchController.searchBar.delegate = self
         definesPresentationContext = true
+        
+        //Tableview register cell
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
         category = [Category(name: CategoryNames.Year), Category(name: CategoryNames.Genre), Category(name: CategoryNames.Directors), Category(name: CategoryNames.Actors)]
+        
+        //load Data
         loadData()
+        
         tableView.reloadData()
     }
 
@@ -72,20 +75,9 @@ class ViewController: UIViewController, UISearchControllerDelegate {
         if let safeData = viewModelObj.loadJson(filename: "movies")
         {
             movies = safeData
-            
-//            if movies.isEmpty
-//            {
-//                DispatchQueue.main.async {
-//                    self.re
-//                }
-//            }
         }
     }
-    // We are being asked to present the search controller, so from the start - show suggested searches.
-    func presentSearchController(_ searchController: UISearchController) {
-        searchController.showsSearchResultsController = true
-            setToSuggestedSearches()
-    }
+    
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource
@@ -107,7 +99,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource
         
         let nextVc = MoviesResultTableViewController()
         nextVc.selectedListValue = category[indexPath.row].name
-        nextVc.filteredProducts = movies
+        nextVc.filteredMovies = movies
         nextVc.isDashboardList = true
         self.navigationController?.pushViewController(nextVc, animated: true)
 
@@ -118,7 +110,6 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource
         if searchController.searchBar.searchTextField.tokens.isEmpty {
             resultsTableController.showSuggestedSearches = true
             
-            // We are no longer interested in cell navigating, since we are now showing the suggested searches.
             resultsTableController.tableView.delegate = resultsTableController
         }
     }
@@ -127,6 +118,12 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource
 // MARK: - UISearchBarDelegate
 
 extension ViewController: UISearchBarDelegate {
+    
+    // present the search controller, so from the start - show suggested searches.
+    func presentSearchController(_ searchController: UISearchController) {
+        searchController.showsSearchResultsController = true
+            setToSuggestedSearches()
+    }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchBar.text!.isEmpty {
@@ -150,7 +147,7 @@ extension ViewController: UISearchResultsUpdating
     // Called when the search bar's text has changed or when the search bar becomes first responder.
     func updateSearchResults(for searchController: UISearchController)
     {
-        // Update the resultsController's filtered items based on the search terms and suggested search token.
+        // Update the MoviewResultsController's filtered moview items based on the search terms and suggested search token.
         let searchResults = movies
 
         // Strip out all the leading and trailing spaces.
@@ -159,7 +156,7 @@ extension ViewController: UISearchResultsUpdating
         let searchItems = strippedString.components(separatedBy: " ") as [String]
         
         
-        // Filter results down by title, yearIntroduced and introPrice.
+        // Filter results down by title, Genre and Actors and Director.
         var filtered = searchResults
         var curTerm = searchItems[0]
         var idx = 0
@@ -174,18 +171,9 @@ extension ViewController: UISearchResultsUpdating
             curTerm = (idx < searchItems.count) ? searchItems[idx] : ""
         }
         
-//        // Filter further down for the right colored flowers.
-//        if !searchController.searchBar.searchTextField.tokens.isEmpty {
-//            // We only support one search token.
-//            let searchToken = searchController.searchBar.searchTextField.tokens[0]
-//            if let searchTokenValue = searchToken.representedObject as? NSNumber {
-//                filtered = filtered.filter { $0.color == searchTokenValue.intValue }
-//            }
-//        }
-        
         // Apply the filtered results to the search results table.
         if let resultsController = searchController.searchResultsController as? MoviesResultTableViewController {
-            resultsController.filteredProducts = filtered
+            resultsController.filteredMovies = filtered
             resultsController.tableView.reloadData()
         }
     }
