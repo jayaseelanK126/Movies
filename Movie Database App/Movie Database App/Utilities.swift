@@ -71,3 +71,33 @@ struct CategoryNames {
     static let Actors = "Actors"
     
 }
+
+
+extension UIImageView
+{
+    func load(url: URL)
+    {
+        DispatchQueue.global().async { [weak self] in
+            if let data = try? Data(contentsOf: url)
+            {
+                if let image = UIImage(data: data)
+                {
+                    DispatchQueue.main.async
+                    {
+                        self?.image = image
+                    }
+                }
+            }
+        }
+    }
+    
+    func makeCircleView()
+    {
+        DispatchQueue.main.async
+        {
+            self.layer.cornerRadius = self.frame.size.width/2
+            self.clipsToBounds = true
+        }
+        
+    }
+}

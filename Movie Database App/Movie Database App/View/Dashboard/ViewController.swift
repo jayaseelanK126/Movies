@@ -42,6 +42,7 @@ class ViewController: UIViewController, UISearchControllerDelegate {
     func setUp()
     {
         resultsTableController = MoviesResultTableViewController()
+        resultsTableController.suggestedSearchDelegate = self
         searchController = UISearchController(searchResultsController: resultsTableController)
         searchController.searchResultsUpdater = self
         searchController.searchBar.autocapitalizationType = .none
@@ -179,31 +180,13 @@ extension ViewController: UISearchResultsUpdating
     }
 }
 
-extension UIImageView
-{
-    func load(url: URL)
-    {
-        DispatchQueue.global().async { [weak self] in
-            if let data = try? Data(contentsOf: url)
-            {
-                if let image = UIImage(data: data)
-                {
-                    DispatchQueue.main.async
-                    {
-                        self?.image = image
-                    }
-                }
-            }
-        }
-    }
+extension ViewController: SuggestedSearch {
     
-    func makeCircleView()
+    func didSelectMovie(_ movie: MoviesModel)
     {
-        DispatchQueue.main.async
-        {
-            self.layer.cornerRadius = self.frame.size.width/2
-            self.clipsToBounds = true
-        }
-        
+        let nextVc = MoviewDetailViewController()
+        nextVc.movieDetails = movie
+        navigationController?.pushViewController(nextVc, animated: true)
+
     }
 }

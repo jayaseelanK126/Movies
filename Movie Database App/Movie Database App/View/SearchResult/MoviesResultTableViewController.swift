@@ -7,6 +7,15 @@
 
 import UIKit
 
+
+// This protocol helps inform ViewController that a suggested search or product was selected.
+protocol SuggestedSearch: AnyObject {
+
+    // A Movie was selected; inform our delgeate that a product was selected to view.
+    func didSelectMovie(_ movie: MoviesModel)
+}
+
+
 class MoviesResultTableViewController: UITableViewController {
         
     
@@ -16,6 +25,8 @@ class MoviesResultTableViewController: UITableViewController {
     var sections = [Section]()
     var isDashboardList:Bool = false
     var selectedListValue:String = ""
+    // Your delegate to receive suggested search tokens.
+    weak var suggestedSearchDelegate: SuggestedSearch?
     
     var showSuggestedSearches: Bool = false {
         didSet {
@@ -110,10 +121,19 @@ class MoviesResultTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let cellData = isDashboardList ? sections[indexPath.section].movies[indexPath.row] : filteredMovies[indexPath.row]
-        let nextVc = MoviewDetailViewController()
-        nextVc.movieDetails = cellData
-        self.navigationController?.pushViewController(nextVc, animated: true)
+        if isDashboardList
+        {
+            let nextVc = MoviewDetailViewController()
+            nextVc.movieDetails = sections[indexPath.section].movies[indexPath.row]
+            self.navigationController?.pushViewController(nextVc, animated: true)
+        }
+        else
+        {
+            guard let suggestedSearchDelegate = suggestedSearchDelegate else { return }
+            let selectedMovie = filteredMovies[indexPath.row]
+            suggestedSearchDelegate.didSelectMovie(selectedMovie)
+        }
+       
     }
    
 }
