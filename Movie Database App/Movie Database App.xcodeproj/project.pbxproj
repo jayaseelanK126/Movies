@@ -141,6 +141,14 @@
 			path = "Movie Details";
 			sourceTree = "<group>";
 		};
+		5863ED77277982D600F3ECB2 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				5864C5072778A3C500A21582 /* Utilities.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		5864C5092778C72C00A21582 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -177,6 +185,7 @@
 			children = (
 				58E549762775ED0A009CB079 /* AppDelegate.swift */,
 				58E549782775ED0A009CB079 /* SceneDelegate.swift */,
+				5863ED77277982D600F3ECB2 /* Utilities */,
 				5863ED7327796FDC00F3ECB2 /* View Model */,
 				5863ED7227796FCD00F3ECB2 /* Model */,
 				5864C5092778C72C00A21582 /* View */,
@@ -185,7 +194,6 @@
 				58E549872775ED0E009CB079 /* Info.plist */,
 				58E549A92775ED2B009CB079 /* movies.json */,
 				58E5497F2775ED0A009CB079 /* Movie_Database_App.xcdatamodeld */,
-				5864C5072778A3C500A21582 /* Utilities.swift */,
 			);
 			path = "Movie Database App";
 			sourceTree = "<group>";
