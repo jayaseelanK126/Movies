@@ -25,7 +25,4 @@ struct ViewModel
 }
 
 
-struct Section {
-    let letter : String
-    let movies : [MoviesModel]
-}
+

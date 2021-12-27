@@ -41,3 +41,8 @@ struct Category
 {
     var name:String
 }
+
+struct Section {
+    let letter : String
+    let movies : [MoviesModel]
+}
