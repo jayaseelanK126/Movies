@@ -10,7 +10,7 @@ import UIKit
 class MoviewDetailViewController: UIViewController {
     
     @IBOutlet weak var posterImgView: UIImageView!
-        @IBOutlet weak var titleLbl: UILabel!
+    @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var castAndCrewLbl: UILabel!
     @IBOutlet weak var releaseDateLbl: UILabel!
     @IBOutlet weak var genreLbl: UILabel!

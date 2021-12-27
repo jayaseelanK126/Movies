@@ -8,10 +8,10 @@
 import UIKit
 
 
-// This protocol helps inform ViewController that a suggested search or product was selected.
+// This protocol helps inform ViewController that a suggested search or movie was selected.
 protocol SuggestedSearch: AnyObject {
 
-    // A Movie was selected; inform our delgeate that a product was selected to view.
+    // A Movie was selected; inform our delgeate that a movie was selected to view.
     func didSelectMovie(_ movie: MoviesModel)
 }
 
@@ -25,7 +25,8 @@ class MoviesResultTableViewController: UITableViewController {
     var sections = [Section]()
     var isDashboardList:Bool = false
     var selectedListValue:String = ""
-    // Your delegate to receive suggested search tokens.
+    
+    // Your delegate to receive suggested search .
     weak var suggestedSearchDelegate: SuggestedSearch?
     
     var showSuggestedSearches: Bool = false {

@@ -107,7 +107,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func setToSuggestedSearches() {
-        // Show suggested searches only if we don't have a search token in the search field.
+        
         if searchController.searchBar.searchTextField.tokens.isEmpty {
             resultsTableController.showSuggestedSearches = true
             
