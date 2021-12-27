@@ -24,41 +24,7 @@ class CSS: NSObject
             view.clipsToBounds = isClipsToBounds
         }
     }
-    
-    static func customButton(button: UIButton, titleNormalColor: UIColor, titleSelectedColor: UIColor, backgroundColor: UIColor = .blue, isBorder: Bool = false, borderColor: UIColor = .white, borderWidth: CGFloat = 0.0, isRoundCorner: Bool = false, cornerRadius: CGFloat = 2.0, isShadow: Bool = false)
-    {
-       
-        button.titleLabel?.textAlignment = .center
-        button.layer.cornerRadius = isRoundCorner ? button.frame.size.height / 2 : cornerRadius
-        button.setTitleColor(titleNormalColor, for: .normal)
-        button.setTitleColor(titleSelectedColor, for: .selected)
-        button.tintColor = UIColor.clear
-        button.backgroundColor = backgroundColor
-        
-        if isBorder
-        {
-            button.layer.borderColor = borderColor.cgColor
-            button.layer.borderWidth = borderWidth
-        }
-        else
-        {
-            button.layer.borderColor = UIColor.clear.cgColor
-            button.layer.borderWidth = 0
-        }
-        
-        if isShadow
-        {
-            button.layer.shadowColor = UIColor.black.cgColor
-            button.layer.shadowOffset = CGSize(width: 0, height: 1.0)
-            button.layer.shadowOpacity = 0.5
-            button.layer.shadowRadius = 1.0
-            button.clipsToBounds = false
-        }
-        else
-        {
-            button.clipsToBounds = true
-        }
-    }
+
 }
 
 
